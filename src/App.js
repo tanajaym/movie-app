@@ -66,7 +66,7 @@ const SrchInput = styled.input`
   margin-left: 1rem;
 `;
 
-const MovieList = styled.div`
+const MovieListContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -77,10 +77,13 @@ const MovieList = styled.div`
 function App() {
   const [searchQuery, updateSearchQuery] = useState("");
   const [timeoutId, updateTimeoutId] = useState();
+  const [MovieList, updateMovieList] = useState([]);
   const fetchData = async(SearchStr) => {
-    const response = await axios.get(`https://www.omdbapi.com/?s=${SearchStr}&apikey=${API_KEY}`);
-    console.log(response)
-  }
+    const response = await axios.get(`https://www.omdbapi.com/?s=${SearchStr}&apikey=${API_KEY}`
+    );
+    // console.log(response)
+    updateMovieList(response.data.Search);
+  };
 
   const onTextChange =(event)=>{
     clearTimeout(timeoutId); 
@@ -102,12 +105,11 @@ function App() {
                   onChange={onTextChange}/>
       </SrchBox>
     </Header>
-    <MovieList>
-      <MovieComponent/>
-      <MovieComponent/>
-      <MovieComponent/>
-      <MovieComponent/> 
-    </MovieList>
+    <MovieListContainer>
+    {MovieList?.length
+      ? MovieList.map((movie, index)=><MovieComponent key={index} movie={movie}/>)
+      : "No movie search"}
+    </MovieListContainer>
     </Container>
   );
 }

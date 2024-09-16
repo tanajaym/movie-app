@@ -38,12 +38,13 @@ const MovieInf =styled.span`
 `;
 
 const MovieComponent = (props) =>{
+  const {Title, Year, ibdbID, Type, Poster}= props.movie;
   return(<MovieContainer>
-    <CoverImg src="https://fontmeme.com/images/Twilight-Poster.jpg"/>
-    <MovieName>Twilight</MovieName>
+    <CoverImg src={Poster}/>
+    <MovieName>{Title}</MovieName>
     <InfColumn>
-      <MovieInf>2012</MovieInf>
-      <MovieInf>movie</MovieInf>
+      <MovieInf>{Year}</MovieInf>
+      <MovieInf>{Type}</MovieInf>
     </InfColumn>
   </MovieContainer>) 
 } 
