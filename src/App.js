@@ -1,12 +1,9 @@
-// import logo from './logo.svg';
-// import './App.css';
 
 import styled from "styled-components";
 import axios from "axios";
 import React, { useState } from "react";
 import MovieComponent from "./components/movie_components";
 import MovieInfComponent from "./components/movie_information";
-// import { useState } from "react/cjs/react.production.min";
 
 export const API_KEY ='b76b0f17'; 
 
@@ -18,7 +15,7 @@ const Header = styled.div`
   display: flex;
   font-size: 25px;
   flex-direction: row;
-  background-color: black;
+  background-color: pink;
   color: white;
   padding: 10px; 
   font-weight: bold;
@@ -31,6 +28,7 @@ const AppName =styled.div`
   display: flex; 
   flex-direction: row;
   align-items: center;
+  font-size: 3rem;
 `;
 
 const MovieImg = styled.img`
@@ -53,8 +51,8 @@ const SrchBox = styled.div`
 `;
 
 const SrchIcon = styled.img`
-  width: 30px;
-  height: 30px; 
+  width: 40px;
+  height: 40px; 
 `; 
 
 const SrchInput = styled.input`
@@ -100,7 +98,7 @@ function App() {
     <Header>
       <AppName>
       <MovieImg src="/movie_icon.svg" />
-      react app</AppName>
+      Evlix</AppName>
       <SrchBox> 
       <SrchIcon src="/search_icon.svg" />
       <SrchInput placeholder="Search Movie" 

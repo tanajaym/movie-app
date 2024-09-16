@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { API_KEY } from "../App";
 
 const Container =styled.div`
+  max-width: 1200
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -46,9 +47,14 @@ const MovieInfComponent = (props) =>{
   <Container>
   <CoverImg src={movieInfo?.Poster} />
   <InfColumn>
-  <MovieName>TITLE: Guardians of the Galaxy Vol. 2</MovieName>
-  <MovieName>RATING: <span>7.6</span></MovieName>
-  <MovieName>TYPE: <span>movie</span></MovieName>
+  <MovieName>TITLE: {movieInfo?.Title}</MovieName>
+  <MovieName>TYPE: <span>{movieInfo?.Type}</span></MovieName>
+  <MovieName>RELEASE: <span>{movieInfo?.Released}</span></MovieName>
+  <MovieName>COUNTRY: <span>{movieInfo?.Country}</span></MovieName>
+  <MovieName>LANGUAGE: <span>{movieInfo?.Language}</span></MovieName>
+  <MovieName>GENRE: <span>{movieInfo?.Genre}</span></MovieName>
+  <MovieName>PLOT: <span>{movieInfo?.Plot}</span></MovieName>
+  <MovieName>RATING: <span>{movieInfo?.imdbRating}</span></MovieName>
 
   </InfColumn>
   </Container>
