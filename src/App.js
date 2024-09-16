@@ -1,13 +1,14 @@
 // import logo from './logo.svg';
 // import './App.css';
 
-import React, { useState } from "react";
 import styled from "styled-components";
-import MovieComponent from "./components/movie_components";
 import axios from "axios";
+import React, { useState } from "react";
+import MovieComponent from "./components/movie_components";
+import MovieInfComponent from "./components/movie_information";
 // import { useState } from "react/cjs/react.production.min";
 
-const API_KEY ='b76b0f17'; 
+export const API_KEY ='b76b0f17'; 
 
 const Container =styled.div`
   display: flex; 
@@ -46,7 +47,6 @@ const SrchBox = styled.div`
  width: 50%;
  height: 2rem;
  margin-left: 20px;
- margin-top: 1rem;
  border-radius: 40px;
  align-items: center;
 
@@ -71,13 +71,16 @@ const MovieListContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   padding: 1.5 rem;
+  gap: 0.5rem;
   justify-content: space-evenly;
+  margin-top: 1.5rem;
 `;  
 
 function App() {
   const [searchQuery, updateSearchQuery] = useState("");
   const [timeoutId, updateTimeoutId] = useState();
   const [MovieList, updateMovieList] = useState([]);
+  const [selectMovie, onMovieSelect] = useState();
   const fetchData = async(SearchStr) => {
     const response = await axios.get(`https://www.omdbapi.com/?s=${SearchStr}&apikey=${API_KEY}`
     );
@@ -105,9 +108,13 @@ function App() {
                   onChange={onTextChange}/>
       </SrchBox>
     </Header>
+    {selectMovie && <MovieInfComponent selectMovie={selectMovie}/>}
     <MovieListContainer>
     {MovieList?.length
-      ? MovieList.map((movie, index)=><MovieComponent key={index} movie={movie}/>)
+      ? MovieList.map((movie, index)=><MovieComponent 
+      key={index} 
+      movie={movie} 
+      onMovieSelect={onMovieSelect} />)
       : "No movie search"}
     </MovieListContainer>
     </Container>
